@@ -141,7 +141,6 @@ class App(ctk.CTk):
         self.high_label.pack(pady=(0, 8))
 
         #---------- LOW Severity ----------
-
         self.high_frame = ctk.CTkFrame(self.counter_frame, fg_color="#1a0a0a", border_width=1, border_color="#169c55", corner_radius=4)
         self.high_frame.grid(row=0, column=2, padx=10, pady=0, sticky="ew")
         self.control_panel.configure(height=250)
@@ -149,6 +148,77 @@ class App(ctk.CTk):
         self.high_count.pack(pady=(8, 0))
         self.high_label = ctk.CTkLabel(self.high_frame, text="LOW", font=("Courier", 10), text_color="#169c55")
         self.high_label.pack(pady=(0, 8))
+
+        #++++++++++ Live Results +++++++++
+        self.results_panel = ctk.CTkFrame(self.left_container, fg_color="#161b22", border_width=1, border_color="#30363d")
+        self.results_panel.grid_propagate(False)
+        self.results_panel.pack_propagate(False)
+        self.results_panel.grid(row=1, column=0, pady=(0,0), sticky="nsew")
+        self.results_panel.grid_columnconfigure(0, weight=1)
+        self.results_panel.grid_rowconfigure(1, weight=1)
+
+        #---------- Filters ----------
+        self.tab_bar = ctk.CTkFrame(self.results_panel, fg_color="#161b22",border_color="#161b22", border_width=1, height=40)
+        self.tab_bar.grid(row=0, column=0, sticky="ew")
+        self.tab_bar.pack_propagate(False)
+        self.tab_bar.grid_propagate(False)
+
+        #---------- Left Tab ----------
+        self.tab_left = ctk.CTkFrame(self.tab_bar, fg_color="transparent")
+        self.tab_left.pack(side="left", padx=(6, 0), pady=6)
+
+        self.btn_all = ctk.CTkButton(self.tab_left, text="ALL", width=50, height=28, corner_radius=4, text_color="#ffffff",fg_color="#2a2d3a",  hover_color="#3a3d4a")
+        self.btn_all.pack(side="left", padx=(0, 1))
+
+        self.btn_high = ctk.CTkButton(self.tab_left, text="HIGH", width=50, height=28, corner_radius=4, text_color="#ffffff", fg_color="#2a2d3a", hover_color="#3a3d4a")
+        self.btn_high.pack(side="left", padx=1)
+
+        self.btn_medium = ctk.CTkButton(self.tab_left, text="MEDIUM", width=70, height=28, corner_radius=4, fg_color="#2a2d3a", text_color="#ffffff", hover_color="#3a3d4a")
+        self.btn_medium.pack(side="left", padx=1)
+
+        self.btn_low = ctk.CTkButton(self.tab_left, text="LOW", width=50, height=28, corner_radius=4, fg_color="#2a2d3a", text_color="#ffffff", hover_color="#3a3d4a")
+        self.btn_low.pack(side="left", padx=1)
+
+        #---------- Right Tab ----------
+        self.tab_right = ctk.CTkFrame(self.tab_bar, fg_color="transparent")
+        self.tab_right.pack(side="right", padx=(0, 6), pady=6)
+
+        self.btn_terminal = ctk.CTkButton(self.tab_right, text="TERMINAL", width=80, height=28, corner_radius=4, fg_color="transparent", text_color="#555e6e", hover_color="#1e2230")
+        self.btn_terminal.pack(side="right", padx=(1,0))
+
+        self.btn_findings = ctk.CTkButton(self.tab_right, text="FINDINGS", width=80, height=28, corner_radius=4,fg_color="#0d2137", text_color="#4d9ef7", hover_color="#1a3a5c",border_width=1, border_color="#1e5799")
+        self.btn_findings.pack(side="right", padx=1)
+
+        # ---------- Seperator ----------
+        self.tab_separator = ctk.CTkFrame(self.tab_right, width=1, height=28, fg_color="#30363d")
+        self.tab_separator.pack(side="left", padx=(0, 8))
+        
+        #---------- Result Text ----------
+        self.results_content = ctk.CTkFrame(self.results_panel, fg_color="transparent")
+        self.results_content.grid(row=1, column=0, sticky="nsew")
+        self.results_content.grid_columnconfigure(0, weight=1)
+        self.results_content.grid_rowconfigure(0, weight=1)
+
+        self.placeholder_label = ctk.CTkLabel(
+            self.results_content,
+            text="No scan running. Start a scan to see results.",
+            font=("Courier", 12),
+            text_color="#2a3040"
+        )
+        self.placeholder_label.grid(row=0, column=0)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
